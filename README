@@ -1,0 +1,12 @@
+To attack server I used hping3 command where I spoofed the address adding there address 192.168.1.1. After that attack to x-teeminal is on.
+There, I first send SYN to x-terminal from real address and try to predict the sequence. From observed behaviour I noticed that 
+difference between sequences is constant, which means diff=seq[i]-seq[i-1]=seq[i-1]-seq[i-2]=....
+Then I send SYN with my sequance of 16000. Then I predict next ACK that I will  send which is equal to the last seq that I received from 
+x-terminal + difference +1. Seq that I will send will be 16001. In the payload I send the command \0tsutomu\0tsutomu\0echo + +>$HOME/.rhosts\0.
+After that just copy the content of the secret.txt to my machine and that is it.
+
+HOW TO USE IT?
+- Just put the icanhackyou.c (which is in tarball) and start files in the same folder on your machine and type ./start.
+- Make sure that before running start script, you do the command: chmod 755 start.
+
+P. S. Big thanks to: http://stackoverflow.com/questions/2556899/passing-the-shell-command-to-rsh-daemon-inside-an-ack-packet
